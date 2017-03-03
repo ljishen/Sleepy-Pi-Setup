@@ -124,7 +124,7 @@ echo 'Setup the Reset Pin...'
 program="autoreset"
 condition=$(which $program 2>/dev/null | grep -v "not found" | wc -l)
 if [ $condition -eq 0 ]; then
-    wget https://github.com/spellfoundry/avrdude-rpi/archive/master.zip
+    wget -N https://github.com/ljishen/avrdude-rpi/archive/master.zip
     unzip master.zip
     cd ./avrdude-rpi-master/
     cp autoreset /usr/bin
