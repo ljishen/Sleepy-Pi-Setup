@@ -124,15 +124,14 @@ echo 'Setup the Reset Pin...'
 program="autoreset"
 condition=$(which $program 2>/dev/null | grep -v "not found" | wc -l)
 if [ $condition -eq 0 ]; then
-    wget -N https://github.com/ljishen/avrdude-rpi/archive/master.zip
+    wget -N -O master.zip https://github.com/ljishen/avrdude-rpi/archive/master.zip
     unzip master.zip
-    cd ./avrdude-rpi-master/
-    cp autoreset /usr/bin
-    cp avrdude-autoreset /usr/bin
-    mv /usr/bin/avrdude /usr/bin/avrdude-original
-    cd /home/pi
-    rm -f /home/pi/master.zip
-    rm -R -f /home/pi/avrdude-rpi-master
+    cp avrdude-rpi-master/autoreset /usr/bin
+    cp avrdude-rpi-master/avrdude-autoreset /usr/bin
+    if [ ! -h "/usr/bin/avrdude" ]; then
+        mv /usr/bin/avrdude /usr/bin/avrdude-original
+    fi
+    rm -rf master.zip avrdude-rpi-master
     ln -s /usr/bin/avrdude-autoreset /usr/bin/avrdude
 else
     echo "$program is already installed - skipping..."
