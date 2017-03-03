@@ -130,9 +130,9 @@ if [ $condition -eq 0 ]; then
     cp avrdude-rpi-master/avrdude-autoreset /usr/bin
     if [ ! -h "/usr/bin/avrdude" ]; then
         mv /usr/bin/avrdude /usr/bin/avrdude-original
+        ln -sf /usr/bin/avrdude-autoreset /usr/bin/avrdude
     fi
     rm -rf master.zip avrdude-rpi-master
-    ln -s /usr/bin/avrdude-autoreset /usr/bin/avrdude
 else
     echo "$program is already installed - skipping..."
 fi
