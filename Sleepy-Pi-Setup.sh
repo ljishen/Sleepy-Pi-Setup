@@ -239,6 +239,14 @@ else
     echo "Installing PinChangeInt Library..."
     git clone https://github.com/GreyGnome/PinChangeInt.git
 fi
+
+if [ -d "/home/pi/sketchbook/libraries/Timezone" ]; then
+    echo "Timezone Library exists - skipping..."
+else
+    echo "Installing Timezone Library..."
+    git clone https://github.com/JChristensen/Timezone.git
+fi
+
 cd ~
 
 
